@@ -1,0 +1,123 @@
+﻿@model WebAppMVC.Models.User
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>User</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword" class="control-label"></label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contact" class="control-label"></label>
+                <input asp-for="Contact" class="form-control" />
+                <span asp-validation-for="Contact" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Country" class="control-label"></label>
+                <select asp-for="Country" name="ddlCountry"
+                        class="form-control"
+                        asp-items="Html.GetEnumSelectList<Country>()">
+                    <option>Select Country</option>
+                </select>
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+
+                <select asp-for="City" class="custom-select">
+                    <option value="">Select City</option>
+                    <option value="1">Chennai</option>
+                    <option value="2">Mumbai</option>
+                    <option value="3">Newyork</option>
+                    <option value="4">New Jersey</option>
+                    <option value="5">London</option>
+                    <option value="6">SouthAmpton</option>
+                </select>
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label"></label>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Gender" id="Gender1" value="Male" checked="checked">
+                    <label class="form-check-label" for="Gender1">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Gender" id="Gender2" value="Female">
+                    <label class="form-check-label" for="Gender2">Female</label>
+                </div>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Terms" /> @Html.DisplayNameFor(model => model.Terms)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" name="btnCreateUser" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <div>
+        <a asp-controller="Login"
+           asp-action="Index">Back to Sign In</a>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+
+
+    <script>
+        $(document).ready(function () {
+          
+          //  alert("script called");
+            // both button click not called
+                    $(document).on('click', '#btnCreateUser', function () {
+                        alert("button click");
+                    }
+                );
+            $('#btnCreateUser').click(function () {
+                alert('Button1 clicked');
+                return false;
+            }
+            );
+
+        }
+
+        );
+
+
+    </script>
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
